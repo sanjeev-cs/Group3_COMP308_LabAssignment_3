@@ -1,0 +1,88 @@
+/* =========================
+   General Form Elements
+   ========================= */
+input, textarea, select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.2rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.2); /* Dark input background */
+    color: #fff; /* White Text */
+    transition: all 0.3s;
+}
+
+/* Placeholder text styling */
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+    opacity: 0.7;
+}
+
+/* Focus state for inputs, textarea, and select */
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.2); /* Cyan Glow */
+    outline: none;
+}
+
+/* =========================
+   Auth Forms (Login / Register)
+   ========================= */
+.auth-form-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background: rgba(30, 30, 47, 0.7); /* Dark Glass */
+  backdrop-filter: blur(15px);
+  color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Auth form title */
+.auth-form-container h2 {
+    margin-top: 0;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Space between input fields in auth forms */
+.form-group input {
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   Admin / Game Forms
+   ========================= */
+.game-form {
+  background: rgba(30, 30, 47, 0.7);
+  backdrop-filter: blur(15px);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  margin-bottom: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 800px;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Game form heading */
+.game-form h3 { 
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}

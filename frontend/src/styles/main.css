@@ -1,0 +1,35 @@
+/* Theme colors - Dark Space Theme */
+:root {
+  --primary: #4fc3f7; /* Cyan */
+  --secondary: #7e57c2; /* Deep Purple */
+  --bg-dark: #161625;
+  --text-light: #e0e0e0;
+  --danger: #ff5252;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); /* Deep Space Gradient */
+  color: var(--text-light);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Links and lists */
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; padding: 0; }
+
+/* Container for page content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1; 
+}
+
+
