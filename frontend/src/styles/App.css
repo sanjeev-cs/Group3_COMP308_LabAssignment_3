@@ -1,0 +1,58 @@
+/* =========================
+   CSS Variables
+   ========================= */
+:root {
+  --primary-color: #3f51b5; /* Soft Blue for buttons, links, accents */
+  --bg-color: #f5f5f5;      /* Light Gray background */
+  --card-bg: #ffffff;       /* Card / panel background */
+  --text-color: #333333;    /* Main text color */
+  --accent-color: #ff4081;  /* Pink accent for highlights */
+  --nav-bg: #283593;        /* Navbar background */
+  --nav-text: #ffffff;      /* Navbar text color */
+}
+
+/* =========================
+   Body & Global Styling
+   ========================= */
+body {
+  margin: 0;
+  background-color: transparent; /* Let three.js background show */
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* =========================
+   App Container
+   ========================= */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Three.js Background Layer
+   ========================= */
+.three-background {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  z-index: -1;               /* Behind all content */
+  background-color: #0f1020; /* Deep space blue fallback */
+  pointer-events: none;      /* Allow clicks through canvas */
+}
+
+/* =========================
+   Main Content Area
+   ========================= */
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}

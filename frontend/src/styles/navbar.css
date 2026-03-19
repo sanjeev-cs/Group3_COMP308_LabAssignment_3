@@ -1,0 +1,71 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(22, 22, 37, 0.85); /* Semi-transparent dark */
+  backdrop-filter: blur(12px); /* Glass effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo a {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(79, 195, 247, 0.5)); /* Logo glow */
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+.nav-links a, .nav-links button {
+  margin-left: 1.5rem;
+  color: #b0b0cc;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+.nav-links a:hover, .nav-links button:hover, .nav-links a.active {
+  color: #4fc3f7; /* Cyan highlight */
+  background: rgba(79, 195, 247, 0.1);
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
+}
+
+/* User info */
+.user-greeting {
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Logout button */
+.logout-btn {
+    border: 1px solid rgba(255, 82, 82, 0.3) !important;
+    color: #ff5252 !important;
+}
+.logout-btn:hover {
+    background: rgba(255, 82, 82, 0.1) !important;
+    box-shadow: 0 0 10px rgba(255, 82, 82, 0.2) !important;
+}
