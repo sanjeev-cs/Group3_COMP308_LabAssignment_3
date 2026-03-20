@@ -182,8 +182,39 @@ button {
   background: linear-gradient(160deg, rgba(18, 56, 100, 0.68), rgba(10, 22, 42, 0.82));
 }
 
+.progress-status-banner--with-beacon {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.progress-status-copy {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
 .progress-status-banner strong {
   font-size: 1.3rem;
+}
+
+.progress-status-beacon {
+  justify-self: end;
+}
+
+.signal-beacon {
+  width: 112px;
+  aspect-ratio: 1;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(170, 220, 255, 0.12);
+  background:
+    radial-gradient(circle at 50% 28%, rgba(111, 202, 255, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(8, 18, 36, 0.94), rgba(10, 21, 40, 0.86));
+}
+
+.signal-beacon canvas {
+  display: block;
 }
 
 .progress-error {
@@ -397,8 +428,8 @@ button {
 .achievement-card {
   padding: 18px;
   display: grid;
-  grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 12px;
 }
 
 .achievement-card.is-highlighted {
@@ -407,16 +438,60 @@ button {
 }
 
 .achievement-visual {
-  min-height: 200px;
-  border-radius: 20px;
+  min-height: 128px;
+  border-radius: 16px;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(9, 21, 39, 0.85), rgba(17, 44, 80, 0.9));
+  background: linear-gradient(180deg, rgba(11, 27, 49, 0.94), rgba(17, 38, 68, 0.88));
+  display: grid;
+  place-items: center;
+  padding: 10px 8px;
 }
 
 .achievement-copy {
   display: grid;
   gap: 10px;
   align-content: center;
+}
+
+.achievement-emblem {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.achievement-token {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.34), transparent 30%),
+    linear-gradient(145deg, rgba(122, 216, 255, 0.92), rgba(54, 136, 255, 0.9));
+  color: #041322;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 18px 40px rgba(41, 156, 255, 0.24);
+}
+
+.achievement-emblem.is-highlighted .achievement-token {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.42), transparent 30%),
+    linear-gradient(145deg, rgba(255, 227, 123, 0.95), rgba(255, 162, 58, 0.92));
+  color: #231405;
+  box-shadow: 0 18px 44px rgba(255, 175, 60, 0.3);
+}
+
+.achievement-state {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(170, 220, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--progress-soft);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }
 
 .achievement-placeholder,
@@ -555,6 +630,14 @@ button {
 
   .section-header {
     flex-direction: column;
+  }
+
+  .progress-status-banner--with-beacon {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-status-beacon {
+    justify-self: start;
   }
 
   .section-note {

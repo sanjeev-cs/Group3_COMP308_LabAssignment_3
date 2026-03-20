@@ -1,1 +1,1 @@
-export { default } from '../../../src/components/three/AnimatedBackground.jsx';
+export { default } from './AnimatedBackground.jsx';

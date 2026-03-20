@@ -1,27 +1,59 @@
 # Game Progress Platform
 
-This project is a federated React/Vite frontend with GraphQL microservices for authentication and game progress tracking.
+React + Vite frontend with ES module microfrontends and GraphQL microservices for authentication and game progress tracking.
 
-## Services
-
-### Backend
-
-- Auth service: `http://localhost:4001/graphql`
-- Game progress service: `http://localhost:4002/graphql`
+## Architecture
 
 ### Frontend
 
-- Host shell: `http://localhost:5173`
-- Auth remote: `http://localhost:5174`
-- Progress remote: `http://localhost:5175`
-
-## Setup
+- `frontend/apps/host`: main shell and routing
+- `frontend/apps/auth`: login and sign-up experience
+- `frontend/apps/progress`: player and admin panels
+- `frontend/apps/shared`: shared Apollo, session, and background components
 
 ### Backend
 
-Use [`backend/.env.example`](/C:/Users/sanje/Documents/Centennial/SEM_4/COMP308_Emerging_Technologies/Lab_Assignments/Lab_Assignment-3/Group3_COMP308_LabAssignment_3/backend/.env.example) as the template.
+- `backend/microservices/auth-service`: authentication service
+- `backend/microservices/game-progress-service`: game progress and leaderboard service
+- `backend/microservices/shared`: shared database, auth, and models
 
-Install and run:
+## Main Flow
+
+- unauthenticated users are routed to `/auth`
+- player accounts are routed to `/player`
+- admin accounts are routed to `/admin`
+- protected routes stay inaccessible without a valid session
+
+## Environment
+
+### Backend
+
+Use `backend/.env.example` as the template.
+
+Required values:
+
+- `MONGODB_URI`
+- `DB_NAME`
+- `JWT_SECRET`
+- `AUTH_SERVICE_PORT`
+- `GAME_PROGRESS_SERVICE_PORT`
+- `FRONTEND_URLS`
+
+### Frontend
+
+Use `frontend/.env.example` as the template.
+
+Main values:
+
+- `VITE_AUTH_GRAPHQL_URL`
+- `VITE_PROGRESS_GRAPHQL_URL`
+- `VITE_HOST_APP_URL`
+
+Remote entry URLs in the frontend env are used for the built federation setup. In development, the host loads the auth and progress apps directly from the workspace.
+
+## Development
+
+### Backend
 
 ```bash
 cd backend
@@ -29,11 +61,12 @@ npm install
 npm run dev
 ```
 
+Services:
+
+- auth GraphQL: `http://localhost:4001/graphql`
+- progress GraphQL: `http://localhost:4002/graphql`
+
 ### Frontend
-
-Use [`frontend/.env.example`](/C:/Users/sanje/Documents/Centennial/SEM_4/COMP308_Emerging_Technologies/Lab_Assignments/Lab_Assignment-3/Group3_COMP308_LabAssignment_3/frontend/.env.example) as the template.
-
-Install and run:
 
 ```bash
 cd frontend
@@ -41,9 +74,50 @@ npm install
 npm run dev
 ```
 
-## Flow
+Development app:
 
-- Login or register through the auth remote
-- Player accounts open the player panel
-- Admin accounts open the admin panel
-- Three.js visuals are used in the dashboard experience
+- host shell: `http://localhost:5173`
+
+Primary routes:
+
+- auth: `http://localhost:5173/auth`
+- player panel: `http://localhost:5173/player`
+- admin panel: `http://localhost:5173/admin`
+
+Optional isolated frontend commands:
+
+```bash
+npm run dev:auth
+npm run dev:progress
+```
+
+## Build
+
+### Frontend
+
+```bash
+cd frontend
+npm run build
+```
+
+Build output:
+
+- `dist/host`
+- `dist/auth`
+- `dist/progress`
+
+### Backend
+
+```bash
+cd backend
+npm start
+```
+
+## Features
+
+- login and sign-up flow with JWT-based authentication
+- role-based routing for player and admin users
+- player progress updates, level tracking, score tracking, and achievements
+- live leaderboard refresh
+- admin player removal feature
+- Three.js space background
