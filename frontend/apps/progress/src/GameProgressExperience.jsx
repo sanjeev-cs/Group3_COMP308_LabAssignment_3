@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { useMutation, useQuery } from '@apollo/client/react';
 import { useDeferredValue, useEffect, useState } from 'react';
 import AchievementBadge from './components/AchievementBadge.jsx';
+import SignalBeacon from './components/SignalBeacon.jsx';
 import SpaceBackdrop from './components/SpaceBackdrop.jsx';
 import {
   SESSION_EVENT_NAME,
@@ -177,6 +178,11 @@ const GameProgressExperience = ({ token, user, mode }) => {
   const averageLevel = trackedPlayers
     ? (leaderboard.reduce((total, entry) => total + entry.level, 0) / trackedPlayers).toFixed(1)
     : '0.0';
+  const playerSignalIntensity = Math.min(
+    1,
+    (playerProgress?.level ?? 1) / 8 + (playerProgress?.score ?? 0) / 2200,
+  );
+  const adminSignalIntensity = Math.min(1, trackedPlayers / 8 + totalAchievements / 24);
   const currentRank = progressLoading ? '...' : playerProgress?.rank ?? 'Unranked';
   const currentLevel = progressLoading ? '...' : playerProgress?.level ?? 1;
   const currentExperience = progressLoading ? '...' : playerProgress?.experiencePoints ?? 0;
@@ -299,10 +305,17 @@ const GameProgressExperience = ({ token, user, mode }) => {
                 <span className="section-note">{currentProgress}</span>
               </div>
 
-              <div className="progress-status-banner">
-                <strong>{currentProgress}</strong>
-                <p>{statusMessage}</p>
-                {errorMessage ? <p className="progress-error">{errorMessage}</p> : null}
+              <div className="progress-status-banner progress-status-banner--with-beacon">
+                <div className="progress-status-copy">
+                  <strong>{currentProgress}</strong>
+                  <p>{statusMessage}</p>
+                  {errorMessage ? <p className="progress-error">{errorMessage}</p> : null}
+                </div>
+                <SignalBeacon
+                  className="progress-status-beacon"
+                  intensity={playerSignalIntensity}
+                  tint="#8edcff"
+                />
               </div>
             </article>
 
@@ -438,10 +451,19 @@ const GameProgressExperience = ({ token, user, mode }) => {
 
             {panelMode === 'admin' ? (
               <>
-                <div className="progress-status-banner">
-                  <strong>{pendingRemoval ? `Remove ${pendingRemoval.username}?` : 'Admin tools ready'}</strong>
-                  <p>{statusMessage}</p>
-                  {errorMessage ? <p className="progress-error">{errorMessage}</p> : null}
+                <div className="progress-status-banner progress-status-banner--with-beacon">
+                  <div className="progress-status-copy">
+                    <strong>
+                      {pendingRemoval ? `Remove ${pendingRemoval.username}?` : 'Admin tools ready'}
+                    </strong>
+                    <p>{statusMessage}</p>
+                    {errorMessage ? <p className="progress-error">{errorMessage}</p> : null}
+                  </div>
+                  <SignalBeacon
+                    className="progress-status-beacon"
+                    intensity={adminSignalIntensity}
+                    tint={pendingRemoval ? '#ff8f85' : '#8edcff'}
+                  />
                 </div>
 
                 {pendingRemoval ? (

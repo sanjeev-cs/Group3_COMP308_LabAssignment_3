@@ -182,8 +182,39 @@ button {
   background: linear-gradient(160deg, rgba(18, 56, 100, 0.68), rgba(10, 22, 42, 0.82));
 }
 
+.progress-status-banner--with-beacon {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.progress-status-copy {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
 .progress-status-banner strong {
   font-size: 1.3rem;
+}
+
+.progress-status-beacon {
+  justify-self: end;
+}
+
+.signal-beacon {
+  width: 112px;
+  aspect-ratio: 1;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(170, 220, 255, 0.12);
+  background:
+    radial-gradient(circle at 50% 28%, rgba(111, 202, 255, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(8, 18, 36, 0.94), rgba(10, 21, 40, 0.86));
+}
+
+.signal-beacon canvas {
+  display: block;
 }
 
 .progress-error {
@@ -599,6 +630,14 @@ button {
 
   .section-header {
     flex-direction: column;
+  }
+
+  .progress-status-banner--with-beacon {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-status-beacon {
+    justify-self: start;
   }
 
   .section-note {

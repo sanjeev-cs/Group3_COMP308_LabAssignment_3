@@ -52,12 +52,12 @@ const PodiumColumn = ({ color, height, index }) => (
   </Float>
 );
 
-const ProgressScene = ({ leaderboard, level, score }) => {
+const ProgressScene = ({ leaderboard, level, score, className = '' }) => {
   const topThree = leaderboard.slice(0, 3);
   const maxScore = Math.max(score, ...topThree.map((entry) => entry.score), 1);
 
   return (
-    <div className="progress-scene-shell">
+    <div className={`progress-scene-shell ${className}`.trim()}>
       <Canvas camera={{ position: [0, 3.7, 8.8], fov: 50 }}>
         <color attach="background" args={['#07111f']} />
         <fog attach="fog" args={['#07111f', 7, 15]} />
